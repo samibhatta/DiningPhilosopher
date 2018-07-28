@@ -44,7 +44,7 @@ Requirement
 
 Connection in the system
 
-![IMAGE](https://imgur.com/a/4YnPQzd "Logo Title Text 1" )
+![IMAGE](https://github.com/gaurabdahal/DiningPhilosopher/blob/master/images/Capture.PNG "Logo Title Text 1" )
 
 ###### Fig  :  Block diagram showing all UDP and TCP connection in the system
 
@@ -70,7 +70,7 @@ This module is responsible to create fork. This will create separate processes t
 
 This module is responsible to create philosopher and communicate with forks with TCP connection.. Each philosopher will send its status (thinking, waiting, eating) to the DisplayManager with UDP communication.
 
- ![IMAGE](https://imgur.com/a/wO6Jaug "Logo Title Text 1")
+ ![IMAGE](https://github.com/gaurabdahal/DiningPhilosopher/blob/master/images/Capture1.PNG "Logo Title Text 1")
  
  ###### Fig : Block diagram showing the request response message and connection type between different processes
 
@@ -88,7 +88,7 @@ At first we run Monitor in one machine. It will serve as a UDP server and start 
 
 2.	After running Monitor, we need to run forks in N different machines. When fork.py is run, it will create a socket to communicate with Monitor in same port and IP.  The fork will then send its ip and port to the monitor, which on receiving by monitor is stored in a list. You can run as many client forks as you like in different machines, the monitor will keep track of all. On running the fork module, it will create child processes for each fork. As the forks are added to monitors list, the monitor will run a timer in a separate thread. The function of the timer is to send a kill signal to the forks after "timer" duration of time. The forks will terminate all their background processes on receiving the kill signal sent by Monitor. It's like an hourglass.Monitor also serves philosophers on providing the forks details. When philosopher process first runs, it will send a request to  monitor to get the list of registered forks. After getting the fork detail, it will establish TCP connection with fork and then start   sending and receiving messages to and from the nearest two forks.
 
-    ![IMAGE](https://imgur.com/a/HjhtIp1 "Logo Title Text 1")
+    ![IMAGE](https://github.com/gaurabdahal/DiningPhilosopher/blob/master/images/Capture2.PNG "Logo Title Text 1")
     
     ###### Fig : UDP client server communication where Monitor is server and fork/philosopher are clients
 
@@ -111,10 +111,13 @@ Throughout the program, the philosopher can be in any of the following three sta
 
 6.	After program runs for 90 seconds, all background processes are terminated. Monitor will send kill signal to all forks simultaneously to let them know that time is over. The philosophers and DisplayManager have their own timers so they all will terminate.
 
- ![IMAGE](https://imgur.com/a/8EAY0Sb "Logo Title Text 1")
+ ![IMAGE](https://github.com/gaurabdahal/DiningPhilosopher/blob/master/images/Capture4.PNG "Logo Title Text 1")
  
 ###### Fig: Message passing between monitor and fork and philosopher and monitor
 
 
 Program Output:
 
+![IMAGE](https://github.com/gaurabdahal/DiningPhilosopher/blob/master/images/Capture5.PNG "Logo Title Text 1")
+ 
+###### Fig: Output
