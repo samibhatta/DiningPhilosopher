@@ -75,6 +75,7 @@ This module is responsible to create philosopher and communicate with forks with
  Fig : Block diagram showing the request response message and connection type between different processes
 
 **_Monitor_**
+
 This module will keep track of all the forks running in different machines. When philosopher want to know the address and port of forks, it will send a message to monitor through UDP and monitor will send a list of registered forks. Monitor is also responsible to send a kill signal to all the forks after certain timeout period.
 
 **_DisplayManager_**
@@ -97,9 +98,9 @@ At first we run Monitor in one machine. It will serve as a UDP server and start 
 	At first all philosophers will pick the n-1 th fork. After that it will try to access nth fork. 
 If the second fork is not available , it will put down the first fork, wait for a random time and try again. This works because the wait time of different philosopher are not same. So if a philosopher puts down fork and waits 3 second, other philosopher might just wait two second and grab the clean fork before the first philosopher grabs it. The first and second forks are swapped in when the philosopher cannot access any of the fork, so that in next iteration it will try to pick up the second fork first.
 Throughout the program, the philosopher can be in any of the following three states:
-    - When the philosopher has no fork in its any hand, it is in THINKING state.
-     - When the philosopher has 1 fork in iots hand and waiting for another fork, it is in WAITING state
-     - When the philosopher has both fork in its hands, it is in EATING state.
+     - When the philosopher has no fork in its any hand, it is in *THINKING* state.
+     - When the philosopher has 1 fork in iots hand and waiting for another fork, it is in *WAITING* state
+     - When the philosopher has both fork in its hands, it is in *EATING* state.
 
     When philosophe gets both fork1 and fork2, it will start eating for a random duration of time and then clean the fork and put it down.Philosopher will know if the fork is dirty or clean by sending it a message and checking the response.
 
