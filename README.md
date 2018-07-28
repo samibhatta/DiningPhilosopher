@@ -58,13 +58,16 @@ There are 5 main modules in our program
 
 	
 **_Values_**
+
 This module contains all the main variables and constants that are used in the program, values like display format, monitors ip and port, timer etc.
 
 
 **_Forks_**
+
 This module is responsible to create fork. This will create separate processes to run forks in background. This module will also register forks to monitor and communicate with philosopher. Communication with monitor is through UDP and communication with philosophers in through TCP.
 
 **_Philosopher_**
+
 This module is responsible to create philosopher and communicate with forks with TCP connection.. Each philosopher will send its status (thinking, waiting, eating) to the DisplayManager with UDP communication.
 
  ![IMAGE](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
@@ -75,6 +78,7 @@ This module is responsible to create philosopher and communicate with forks with
 This module will keep track of all the forks running in different machines. When philosopher want to know the address and port of forks, it will send a message to monitor through UDP and monitor will send a list of registered forks. Monitor is also responsible to send a kill signal to all the forks after certain timeout period.
 
 **_DisplayManager_**
+
 This module is responsible to Display the states of philosopher. Each Philosopher will sent its status in a random interval of time to the DisplayManager through UDP. 
 	
 Program Flow
