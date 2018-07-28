@@ -46,7 +46,7 @@ Connection in the system
 
 ![IMAGE](Capture.PNG "Logo Title Text 1" )
 
-Fig  :  Block diagram showing all UDP and TCP connection in the system
+###### Fig  :  Block diagram showing all UDP and TCP connection in the system
 
 ## Modules
 There are 5 main modules in our program
@@ -72,7 +72,7 @@ This module is responsible to create philosopher and communicate with forks with
 
  ![IMAGE](Capture1.PNG "Logo Title Text 1")
  
- Fig : Block diagram showing the request response message and connection type between different processes
+ ###### Fig : Block diagram showing the request response message and connection type between different processes
 
 **_Monitor_**
 
@@ -90,7 +90,7 @@ At first we run Monitor in one machine. It will serve as a UDP server and start 
 
     ![IMAGE](Capture2.PNG "Logo Title Text 1")
     
-    Fig : UDP client server communication where Monitor is server and fork/philosopher are clients
+    ###### Fig : UDP client server communication where Monitor is server and fork/philosopher are clients
 
 3.	All forks are initially clean. So at first each fork can be grabbed by any philosopher. After the forks are created, it just waits for the philosopher to send message. 
 
@@ -113,7 +113,7 @@ Throughout the program, the philosopher can be in any of the following three sta
 
  ![IMAGE](Capture4.PNG "Logo Title Text 1")
  
-Fig: Message passing between monitor and fork and philosopher and monitor
+###### Fig: Message passing between monitor and fork and philosopher and monitor
 
 
 Program Output:
