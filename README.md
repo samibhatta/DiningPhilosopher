@@ -21,25 +21,30 @@ Requirement
 1. python 2.6 or greater
 2. Any Unix or Windows system
 
-##HOW TO RUN THE PROGRAM
+## HOW TO RUN THE PROGRAM
 
 1.	At first, change the name of host computer on which you will run the monitor in ```values.py``` file under the variable name of **MONITOR_IP**
 ```	MONITOR_IP = socket.gethostbyname("sigma27")```
 
 2.	And then, run monitor.py in one computer
+
 ```	$ python monitor.py```
 
 3.	After you do that, run mfork.py in five different machines
+
 ```	$ python mfork.py```
 
 4.	Once all forks are running, run the displayManager.py in another machine or you can choose the same machine that is running monitor
+
 ```	$ python displayManager.py```
 
 5.	Once displayManger is active, run mphilospher.py in another machine
+
 ```	$ python mphilosopher.py```
 
 
 Connection in the system
+
 ![IMAGE](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1" )
 Fig  :  Block diagram showing all UDP and TCP connection in the system
 
@@ -51,38 +56,34 @@ There are 5 main modules in our program
 4.	Monitor
 5.	DisplayManager
 	
-1.	Values:
+1.Values:
 This module contains all the main variables and constants that are used in the program, values like display format, monitors ip and port, timer etc.
 
 
-2.	Forks
+2.Forks
 This module is responsible to create fork. This will create separate processes to run forks in background. This module will also register forks to monitor and communicate with philosopher. Communication with monitor is through UDP and communication with philosophers in through TCP.
 
-3.	Philosopher
+3.Philosopher
 This module is responsible to create philosopher and communicate with forks with TCP connection.. Each philosopher will send its status (thinking, waiting, eating) to the DisplayManager with UDP communication.
  
  ![IMAGE](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
 Fig : Block diagram showing the request response message and connection type between different processes
 
-4.	Monitor
+4.Monitor
 This module will keep track of all the forks running in different machines. When philosopher want to know the address and port of forks, it will send a message to monitor through UDP and monitor will send a list of registered forks. Monitor is also responsible to send a kill signal to all the forks after certain timeout period.
 
-5.	DisplayManager
+5.DisplayManager
 This module is responsible to Display the states of philosopher. Each Philosopher will sent its status in a random interval of time to the DisplayManager through UDP. 
 	
-
-
 Program Flow
 
 1.	The modules , values, stores the ip and port of the monitor. The IP address of monitor is get by doing **socket.gethostbyname() **function. 
 At first we run Monitor in one machine. It will serve as a UDP server and start accepting connection. It will serve to forks and philosophers. The monitor will keep running in background throughout the program life cycle
 
-2.	After running Monitor, we need to run forks in N different machines. When fork.py is run, it will create a socket to communicate with Monitor in same port and IP.  The fork will then send its ip and port to the monitor, which on receiving by monitor is stored in a list. You can run as many client forks as you like in different machines, the monitor will keep track of all. On running the fork module, it will create child processes for each fork. As the forks are added to monitors list, the monitor will run a timer in a separate thread. The function of the timer is to send a kill signal to the forks after "timer" duration of time. The forks will terminate all their background processes on receiving the kill signal sent by Monitor. It's like an hourglass.
-
- Monitor also serves philosophers on providing the forks details. When philosopher process first runs, it will send a request to monitor to get the list of registered forks. After getting the fork detail, it will establish TCP connection with fork and then start sending and receiving messages to and from the nearest two forks.
+2.	After running Monitor, we need to run forks in N different machines. When fork.py is run, it will create a socket to communicate with Monitor in same port and IP.  The fork will then send its ip and port to the monitor, which on receiving by monitor is stored in a list. You can run as many client forks as you like in different machines, the monitor will keep track of all. On running the fork module, it will create child processes for each fork. As the forks are added to monitors list, the monitor will run a timer in a separate thread. The function of the timer is to send a kill signal to the forks after "timer" duration of time. The forks will terminate all their background processes on receiving the kill signal sent by Monitor. It's like an hourglass.Monitor also serves philosophers on providing the forks details. When philosopher process first runs, it will send a request to  monitor to get the list of registered forks. After getting the fork detail, it will establish TCP connection with fork and then start   sending and receiving messages to and from the nearest two forks.
 
  ![IMAGE](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
-Fig : UDP client server communication where Monitor is server and fork/philosopher are clients
+   Fig : UDP client server communication where Monitor is server and fork/philosopher are clients
 
 3.	All forks are initially clean. So at first each fork can be grabbed by any philosopher. After the forks are created, it just waits for the philosopher to send message. 
 
