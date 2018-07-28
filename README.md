@@ -65,6 +65,7 @@ This module is responsible to create fork. This will create separate processes t
 
 **_Philosopher_**
 This module is responsible to create philosopher and communicate with forks with TCP connection.. Each philosopher will send its status (thinking, waiting, eating) to the DisplayManager with UDP communication.
+
  ![IMAGE](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
  Fig : Block diagram showing the request response message and connection type between different processes
 
@@ -101,6 +102,7 @@ Throughout the program, the philosopher can be in any of the following three sta
      - If it is a drop request, it change the status from dirty to clean and sets fork_user to None. and sends the response to philosopher which contains the message 'drop_success'
 
 6.	After program runs for 90 seconds, all background processes are terminated. Monitor will send kill signal to all forks simultaneously to let them know that time is over. The philosophers and DisplayManager have their own timers so they all will terminate.
+
  ![IMAGE](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
 Fig: Message passing between monitor and fork and philosopher and monitor
 
