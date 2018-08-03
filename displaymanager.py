@@ -107,6 +107,7 @@ def run_in_background(length):
         print("run_in_background :",str(e))
 
 
+#get the list of all forks - different computers
 def get_all_forks():
     global forks
     port = 4001
